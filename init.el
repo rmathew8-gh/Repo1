@@ -541,7 +541,7 @@
     :host "api.groq.com"
     :endpoint "/openai/v1/chat/completions"
     :stream t
-    :key "gsk_..."                   ;can be a function that returns the key
+    :key (getenv "GROQ_API_KEY")
     :models '("mixtral-8x7b-32768"
               "gemma-7b-it"
               "llama2-70b-4096")))
