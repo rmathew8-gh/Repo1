@@ -133,6 +133,7 @@
 
 
 (use-package xclip
+  :if (display-graphic-p)
   :config
   (setq select-enable-clipboard t) ;; uses clipboard for cut/paste
   (setq select-enable-primary t) ;; uses selection for cut/paste

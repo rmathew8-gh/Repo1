@@ -221,7 +221,7 @@ ACTION is one of ..."
                                             "rearrange"))))
          (out-buf (not (equal _action "keep"))))
     (save-excursion (shell-command-on-region (point-min)
-                                             (point-max) "python -m main.tangle" out-buf out-buf nil
+                                             (point-max) "python -m antlr_noweb.tangle" out-buf out-buf nil
                                              t))))
 
 
@@ -229,13 +229,13 @@ ACTION is one of ..."
   "Generate all files (genFiles)."
   (interactive)
   (shell-command-on-region (point-min)
-                           (point-max) "python -m main.tangle -a tangle"))
+                           (point-max) "python -m antlr_noweb.tangle -a tangle"))
 
 (defun lata-antlr-force-tangle-all ()
   "Generate all files, do mkdirs as needed (genFiles)."
   (interactive)
   (shell-command-on-region (point-min)
-                           (point-max) "python -m main.tangle --mkdir -a tangle"))
+                           (point-max) "python -m antlr_noweb.tangle --mkdir -a tangle"))
 
 
 (defun lata-antlr-tangle-all-subtree ()
@@ -244,7 +244,7 @@ ACTION is one of ..."
   (let ((name (la--prev-chunkname)))
     (save-excursion (shell-command-on-region (point-min)
                                              (point-max)
-                                             (concat "python -m main.tangle -a tangle -R \""
+                                             (concat "python -m antlr_noweb.tangle -a tangle -R \""
                                                      name "\"")))))
 
 (defun lata-antlr-weave-subtree ()
@@ -253,7 +253,7 @@ ACTION is one of ..."
   (let ((name (la--prev-chunkname)))
     (save-excursion (shell-command-on-region (point-min)
                                              (point-max)
-                                             (concat "python -m main.tangle -a rearrange -R \""
+                                             (concat "python -m antlr_noweb.tangle -a rearrange -R \""
                                                      name "\"")))))
 
 (defun lata-antlr-weave-except-subtree ()
@@ -262,7 +262,7 @@ ACTION is one of ..."
   (let ((name (la--prev-chunkname)))
     (save-excursion (shell-command-on-region (point-min)
                                              (point-max)
-                                             (concat "python -m main.tangle --action remove -R \""
+                                             (concat "python -m antlr_noweb.tangle --action remove -R \""
                                                      name "\"")))))
 
 

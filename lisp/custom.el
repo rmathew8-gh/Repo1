@@ -1,5 +1,6 @@
 (custom-set-variables
  '(backup-directory-alist (list (cons "." (concat user-emacs-directory "backups"))))
+ '(case-fold-search t)
  '(create-lockfiles nil) ;; cannot be relocated.
  '(custom-safe-themes
    '("fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" default))

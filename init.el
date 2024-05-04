@@ -23,6 +23,11 @@
 (straight-use-package 'org)
 (setq debug-on-error t)
 
+(use-package request)
+(use-package json-mode)
+(use-package graphql-mode)
+(use-package ob-graphql)
+
 (use-package dired-x
   :straight nil
   :bind
@@ -546,9 +551,13 @@
               "gemma-7b-it"
               "llama2-70b-4096")))
 
+;; <:common:use-package: codeium>
 
 (load-library "init-emacs")
 (load-library "init-defuns")
 
 (load-library "lata-antlr-noweb-mode")
 (add-to-list 'auto-mode-alist '("\\.nw$" . lata-antlr-noweb-mode))
+
+(provide 'init)
+;;; init.el ends here
