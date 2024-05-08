@@ -21,7 +21,7 @@
 
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
 (straight-use-package 'org)
-(setq debug-on-error t)
+(setq debug-on-error nil)
 
 (use-package request)
 (use-package json-mode)
@@ -133,7 +133,8 @@
          (python-ts-mode . abbrev-mode)
          (python-ts-mode . company-mode)
          (python-ts-mode . (lambda ()
-                         (add-hook 'before-save-hook 'blacken-buffer nil t))))
+                       (add-hook 'comint-output-filter-functions 'python-pdbtrack-comint-output-filter-function t)
+                       (add-hook 'before-save-hook 'blacken-buffer nil t))))
   :bind
   (:map python-mode-map
     ("C-c p" . (lambda()

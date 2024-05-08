@@ -73,6 +73,7 @@
 
 (setq known-systems '(("dell" . "red")
                       ("ryzen" . "blue")
+                      ("Roys-Air.attlocal.net" . "purple")
                       ("t500" . "green")))
 (use-package emacs
   :if
@@ -85,9 +86,11 @@
   (setq modus-themes-bold-constructs t)
   (setq modus-themes-italic-constructs t)
   (load-theme 'modus-vivendi t)
-  (let ((color (cdr (assoc (system-name) known-systems))))
-    (custom-set-faces
-     `(spaceline-highlight-face ((t (:background ,color)))))))
+  (custom-theme-set-faces
+   'modus-vivendi
+   '(ediff-fine-diff-A ((t (:background "light yellow" :foreground "black"))))
+   '(ediff-fine-diff-B ((t (:background "light yellow" :foreground "black"))))
+   '(spaceline-highlight-face ((t (:background (cdr (assoc (system-name) known-systems))))))))
 
 (use-package emacs
   :if
