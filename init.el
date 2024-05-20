@@ -431,8 +431,11 @@
 
 (use-package docker
   :config
+  (setq docker-command "podman") 
   (defalias 'dc 'docker-containers)
   (defalias 'di 'docker-images))
+
+(use-package ssh)
 
 ;; (use-package docker-tramp)
 
@@ -490,13 +493,7 @@
 
   (add-hook 'window-size-change-functions 'org-image-resize))
 
-(use-package prettier
-  :config
-  (setq prettier-args '(
-                        "--print-width" "120"
-                        "--single-quote" "true"
-                        )))
-
+;; <:common:use-package: prettier> ;; crashes emacs
 (use-package treesit-auto
   :commands (treesit-install-language-grammar nf/treesit-install-all-languages)
   :init

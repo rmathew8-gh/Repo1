@@ -2,6 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
+(defvar roy/TANGLE (concat (getenv "HOME") "/.virtualenvs/py/bin/python -m antlr_noweb.tangle"))
+
 (defconst chunk-decl-re "^<<\\(.*?\\)>>=$")
 (defconst chunk-use-re "<<\\(.*?\\)>>")
 
@@ -221,7 +223,7 @@ ACTION is one of ..."
                                             "rearrange"))))
          (out-buf (not (equal _action "keep"))))
     (save-excursion (shell-command-on-region (point-min)
-                                             (point-max) "python -m antlr_noweb.tangle" out-buf out-buf nil
+                                             (point-max) roy/TANGLE out-buf out-buf nil
                                              t))))
 
 
@@ -229,13 +231,13 @@ ACTION is one of ..."
   "Generate all files (genFiles)."
   (interactive)
   (shell-command-on-region (point-min)
-                           (point-max) "python -m antlr_noweb.tangle -a tangle"))
+                           (point-max) (concat roy/TANGLE " -a tangle")))
 
 (defun lata-antlr-force-tangle-all ()
   "Generate all files, do mkdirs as needed (genFiles)."
   (interactive)
   (shell-command-on-region (point-min)
-                           (point-max) "python -m antlr_noweb.tangle --mkdir -a tangle"))
+                           (point-max) (concat roy/TANGLE " --mkdir -a tangle")))
 
 
 (defun lata-antlr-tangle-all-subtree ()
@@ -244,7 +246,7 @@ ACTION is one of ..."
   (let ((name (la--prev-chunkname)))
     (save-excursion (shell-command-on-region (point-min)
                                              (point-max)
-                                             (concat "python -m antlr_noweb.tangle -a tangle -R \""
+                                             (concat roy/TANGLE " -a tangle -R \""
                                                      name "\"")))))
 
 (defun lata-antlr-weave-subtree ()
@@ -253,7 +255,7 @@ ACTION is one of ..."
   (let ((name (la--prev-chunkname)))
     (save-excursion (shell-command-on-region (point-min)
                                              (point-max)
-                                             (concat "python -m antlr_noweb.tangle -a rearrange -R \""
+                                             (concat roy/TANGLE " -a rearrange -R \""
                                                      name "\"")))))
 
 (defun lata-antlr-weave-except-subtree ()
@@ -262,7 +264,7 @@ ACTION is one of ..."
   (let ((name (la--prev-chunkname)))
     (save-excursion (shell-command-on-region (point-min)
                                              (point-max)
-                                             (concat "python -m antlr_noweb.tangle --action remove -R \""
+                                             (concat roy/TANGLE " --action remove -R \""
                                                      name "\"")))))
 
 

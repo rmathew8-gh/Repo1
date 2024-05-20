@@ -73,11 +73,14 @@
 
 (setq known-systems '(("dell" . "red")
                       ("ryzen" . "blue")
-                      ("Roys-Air.attlocal.net" . "purple")
+                      ("roy-m3" . "purple3")
                       ("t500" . "green")))
+(defun _hostname()
+  (car (split-string  (system-name) "\\.")))
+
 (use-package emacs
   :if
-  (assoc (system-name) known-systems)
+  (assoc (_hostname) known-systems)
   :config
   (setq modus-vivendi-palette-overrides '((bg-main "#333333")
                                           (bg-mode-line-inactive bg-tab-other))
@@ -86,11 +89,12 @@
   (setq modus-themes-bold-constructs t)
   (setq modus-themes-italic-constructs t)
   (load-theme 'modus-vivendi t)
-  (custom-theme-set-faces
-   'modus-vivendi
-   '(ediff-fine-diff-A ((t (:background "light yellow" :foreground "black"))))
-   '(ediff-fine-diff-B ((t (:background "light yellow" :foreground "black"))))
-   '(spaceline-highlight-face ((t (:background (cdr (assoc (system-name) known-systems))))))))
+  (let ((color (cdr (assoc (_hostname) known-systems))))
+    (custom-theme-set-faces
+     'modus-vivendi
+     '(ediff-fine-diff-A ((t (:background "light yellow" :foreground "black"))))
+     '(ediff-fine-diff-B ((t (:background "light yellow" :foreground "black"))))
+     `(spaceline-highlight-face ((t (:background ,color)))))))
 
 (use-package emacs
   :if
